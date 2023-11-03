@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogControllerService } from 'api-docs';
 import { BlogService } from 'src/app/_service/blog.service';
 import { TagService } from 'src/app/_service/tag.service';
 
@@ -14,7 +15,8 @@ export class BlogClientComponent implements OnInit {
   listBlog : any;
   listBlogNewest: any;
 
-  constructor(private tagService: TagService,private blogService: BlogService){
+  constructor(private tagService: TagService,private blogService: BlogService,
+    private blogServiceController: BlogControllerService){
 
   }
 
@@ -35,7 +37,9 @@ export class BlogClientComponent implements OnInit {
   }
 
   getListBlog(){
-    this.blogService.getList().subscribe({
+    console.log("gggggggggg")
+    // this.blogService.getList().subscribe({
+    this.blogServiceController.getList4().subscribe({
       next: res =>{
         this.listBlog = res;
         console.log(this.listBlog)
@@ -54,6 +58,6 @@ export class BlogClientComponent implements OnInit {
       }
     })
   }
-  
+
 
 }

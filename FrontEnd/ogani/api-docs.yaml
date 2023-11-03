@@ -1,0 +1,1216 @@
+openapi: 3.0.1
+info:
+  title: OGANI REST API DOCUMENT
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Phạm Văn Hải
+    url: https://www.facebook.com/phong.thien.160196
+    email: phamhai.bvh@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://springdoc.org
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/user/update:
+    put:
+      tags:
+      - user-controller
+      summary: Cập nhật user
+      operationId: updateProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/tag/update/{id}:
+    put:
+      tags:
+      - tag-controller
+      summary: Tìm nhãn bằng id và cập nhật nó
+      operationId: updateTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTagRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tag'
+  /api/tag/enable/{id}:
+    put:
+      tags:
+      - tag-controller
+      summary: Kích hoạt nhãn bằng id
+      operationId: enabled
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/product/update/{id}:
+    put:
+      tags:
+      - product-controller
+      summary: Tìm sản phẩm bằng id và cập nhật sản phẩm đó
+      operationId: updateProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+  /api/category/update/{id}:
+    put:
+      tags:
+      - category-controller
+      summary: Tìm danh mục bằng id và cập nhật danh mục đó
+      operationId: updateCategory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/category/enable/{id}:
+    put:
+      tags:
+      - category-controller
+      summary: Kích hoạt danh mục bằng id
+      operationId: enabled_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/blog/update/{id}:
+    put:
+      tags:
+      - blog-controller
+      summary: Tìm blog bằng id và cập nhật blog đó
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBlogRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Blog'
+  /api/tag/create:
+    post:
+      tags:
+      - tag-controller
+      summary: Tạo mới nhãn
+      operationId: createTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTagRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tag'
+  /api/product/create:
+    post:
+      tags:
+      - product-controller
+      summary: Tạo mới sản phẩm
+      operationId: createProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+  /api/order/create:
+    post:
+      tags:
+      - order-controller
+      summary: Đặt hàng sản phẩm
+      operationId: placeOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/image/upload-file:
+    post:
+      tags:
+      - image-controller
+      summary: Upload file lên database
+      operationId: uploadFile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/category/create:
+    post:
+      tags:
+      - category-controller
+      summary: Tạo mới danh mục
+      operationId: createCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/blog/create:
+    post:
+      tags:
+      - blog-controller
+      summary: Tạo mới blog
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBlogRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Blog'
+  /api/auth/register:
+    post:
+      tags:
+      - auth-controller
+      summary: Đăng ký
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/logout:
+    post:
+      tags:
+      - auth-controller
+      summary: Đăng xuất
+      operationId: logoutUser
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/login:
+    post:
+      tags:
+      - auth-controller
+      summary: Đăng nhập
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/user/:
+    get:
+      tags:
+      - user-controller
+      summary: Lấy ra user bằng username
+      operationId: getuser
+      parameters:
+      - name: username
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/tag/:
+    get:
+      tags:
+      - tag-controller
+      summary: Lấy ra danh sách nhãn
+      operationId: getList
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+  /api/product/{id}:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy sản phẩm bằng id
+      operationId: getProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+  /api/product/search:
+    get:
+      tags:
+      - product-controller
+      summary: Tìm kiếm sản phẩm bằng keyword
+      operationId: searchProduct
+      parameters:
+      - name: keyword
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/related/{id}:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra ngẫu nhiên 4 sản phẩm bằng category_id
+      operationId: getListRelatedProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/range:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra danh sách sản phẩm ở các mức giá từ min đến max
+      operationId: getListProductByPriceRange
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: min
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: max
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/price:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra danh sách 8 sản phẩm có giá từ thấp nhất đến cao
+      operationId: getListByPrice
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/newest/{number}:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra danh sách sản phẩm mới nhất giới hạn số lượng = number
+      operationId: getListNewst
+      parameters:
+      - name: number
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/category/{id}:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra danh sách sản phẩm bằng id của danh mục
+      operationId: getListProductByCategory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/product/:
+    get:
+      tags:
+      - product-controller
+      summary: Lấy ra danh sách sản phẩm
+      operationId: getList_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/order/user:
+    get:
+      tags:
+      - order-controller
+      summary: Lấy ra danh sách đặt hàng của người dùng bằng username
+      operationId: getListByUser
+      parameters:
+      - name: username
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+  /api/order/:
+    get:
+      tags:
+      - order-controller
+      summary: Lấy ra danh sách đặt hàng
+      operationId: getList_2
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+  /api/image/user/{id}:
+    get:
+      tags:
+      - image-controller
+      summary: Lấy ra danh sách hình ảnh của user bằng user_id
+      operationId: getListByUser_1
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/image/:
+    get:
+      tags:
+      - image-controller
+      operationId: getList_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/category/enabled:
+    get:
+      tags:
+      - category-controller
+      summary: Lấy ra danh sách danh mục đã kích hoạt
+      operationId: getListEnabled
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+  /api/category/:
+    get:
+      tags:
+      - category-controller
+      summary: Lấy danh sách danh mục
+      operationId: getListCategory
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/blog/{id}:
+    get:
+      tags:
+      - blog-controller
+      summary: Lấy ra blog bằng ID
+      operationId: getBlog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Blog'
+  /api/blog/newest:
+    get:
+      tags:
+      - blog-controller
+      summary: Lấy ra danh sách blog mới nhất với số lượng = limit
+      operationId: getListNewest
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+  /api/blog/:
+    get:
+      tags:
+      - blog-controller
+      summary: Lấy tất cả danh sách blog
+      operationId: getList_4
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+  /api/tag/delete/{id}:
+    delete:
+      tags:
+      - tag-controller
+      summary: Xóa nhãn bằng id
+      operationId: deleteTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/product/delete/{id}:
+    delete:
+      tags:
+      - product-controller
+      summary: Xóa sản phẩm bằng id
+      operationId: deleteProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/category/delete/{id}:
+    delete:
+      tags:
+      - category-controller
+      summary: Xóa danh mục bằng id
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/blog/delete/{id}:
+    delete:
+      tags:
+      - blog-controller
+      summary: Xóa blog bằng Id
+      operationId: delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+components:
+  schemas:
+    UpdateProfileRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        country:
+          type: string
+        state:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          enum:
+          - ROLE_USER
+          - ROLE_MODERATOR
+          - ROLE_ADMIN
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        password:
+          type: string
+        country:
+          type: string
+        state:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        verificationCode:
+          type: string
+        enabled:
+          type: boolean
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    CreateTagRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Tên nhãn
+          example: Beauty
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        enable:
+          type: boolean
+    CreateProductRequest:
+      required:
+      - categoryId
+      - description
+      - imageIds
+      - name
+      - price
+      - quantity
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 5
+          type: string
+          description: Tên sản phẩm
+          example: Product1
+        description:
+          maxLength: 1000
+          minLength: 5
+          type: string
+          description: Mô tả sản phẩm
+          example: Đây là sản phẩm thứ 1
+        price:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Giá sản phẩm
+          format: int64
+          example: 12
+        quantity:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Số lượng sản phẩm
+          format: int32
+          example: 12
+        categoryId:
+          type: integer
+          description: ID của danh mục
+          format: int64
+          example: 1
+        imageIds:
+          uniqueItems: true
+          type: array
+          description: Mảng Id của hình ảnh
+          example:
+          - 1
+          - 2
+          - 3
+          items:
+            type: integer
+            description: Mảng Id của hình ảnh
+            format: int64
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        enable:
+          type: boolean
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          type: string
+        size:
+          type: integer
+          format: int64
+        data:
+          type: array
+          items:
+            type: string
+            format: byte
+        uploadedBy:
+          $ref: '#/components/schemas/User'
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        category:
+          $ref: '#/components/schemas/Category'
+        images:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    CreateCategoryRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 5
+          type: string
+    CreateBlogRequest:
+      required:
+      - content
+      - description
+      - imageId
+      - title
+      type: object
+      properties:
+        title:
+          maxLength: 300
+          minLength: 5
+          type: string
+        description:
+          maxLength: 300
+          minLength: 5
+          type: string
+        content:
+          maxLength: 2147483647
+          minLength: 5
+          type: string
+        imageId:
+          type: integer
+          format: int64
+        username:
+          type: string
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+            format: int64
+    Blog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        createAt:
+          type: string
+          format: date-time
+        image:
+          $ref: '#/components/schemas/Image'
+        user:
+          $ref: '#/components/schemas/User'
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    CreateOrderDetailRequest:
+      required:
+      - name
+      - price
+      - quantity
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 5
+          type: string
+        price:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          format: int64
+        quantity:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+        subTotal:
+          type: integer
+          format: int64
+    CreateOrderRequest:
+      required:
+      - address
+      - country
+      - email
+      - firstname
+      - lastname
+      - phone
+      - postCode
+      - state
+      - town
+      type: object
+      properties:
+        firstname:
+          maxLength: 50
+          minLength: 3
+          type: string
+        lastname:
+          maxLength: 50
+          minLength: 3
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+        town:
+          type: string
+        state:
+          type: string
+        postCode:
+          type: integer
+          format: int64
+        email:
+          type: string
+        phone:
+          type: string
+        note:
+          type: string
+        totalPrice:
+          type: integer
+          format: int64
+        username:
+          type: string
+        orderDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOrderDetailRequest'
+    CreateUserRequest:
+      required:
+      - email
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          maxLength: 30
+          minLength: 5
+          type: string
+          description: Username
+          example: admin
+        email:
+          maxLength: 30
+          minLength: 5
+          type: string
+          description: Email
+          example: admin@gmail.com
+        password:
+          maxLength: 30
+          minLength: 6
+          type: string
+          description: Mật khẩu
+          example: "123456"
+        role:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    LoginRequest:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          maxLength: 30
+          minLength: 5
+          type: string
+          description: Username
+          example: admin
+        password:
+          maxLength: 30
+          minLength: 6
+          type: string
+          description: Mật khẩu
+          example: "123456"
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstname:
+          type: string
+        lastname:
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+        town:
+          type: string
+        state:
+          type: string
+        postCode:
+          type: integer
+          format: int64
+        email:
+          type: string
+        phone:
+          type: string
+        note:
+          type: string
+        totalPrice:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+        orderdetails:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderDetail'
+    OrderDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        price:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        subTotal:
+          type: integer
+          format: int64
+        order:
+          $ref: '#/components/schemas/Order'

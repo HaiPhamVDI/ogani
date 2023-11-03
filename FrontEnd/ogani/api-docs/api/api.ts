@@ -1,0 +1,17 @@
+export * from './authController.service';
+import { AuthControllerService } from './authController.service';
+export * from './blogController.service';
+import { BlogControllerService } from './blogController.service';
+export * from './categoryController.service';
+import { CategoryControllerService } from './categoryController.service';
+export * from './imageController.service';
+import { ImageControllerService } from './imageController.service';
+export * from './orderController.service';
+import { OrderControllerService } from './orderController.service';
+export * from './productController.service';
+import { ProductControllerService } from './productController.service';
+export * from './tagController.service';
+import { TagControllerService } from './tagController.service';
+export * from './userController.service';
+import { UserControllerService } from './userController.service';
+export const APIS = [AuthControllerService, BlogControllerService, CategoryControllerService, ImageControllerService, OrderControllerService, ProductControllerService, TagControllerService, UserControllerService];
