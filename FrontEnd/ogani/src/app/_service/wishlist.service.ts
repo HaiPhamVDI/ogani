@@ -49,5 +49,5 @@ export class WishlistService {
     this.items = [];
     localStorage.removeItem('wish_list');
   }
-  
+
 }

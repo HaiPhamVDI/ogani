@@ -1,8 +1,9 @@
 import { HttpHeaders,HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const USER_API = "http://localhost:8080/api/user/";
+const USER_API = environment.API_URL + "/api/user/";
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -15,7 +16,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
-          
+
   }
 
   getUser(username: string):Observable<any>{

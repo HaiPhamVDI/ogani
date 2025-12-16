@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../_class/order';
 import { OrderDetail } from '../_class/order-detail';
+import { environment } from 'src/environments/environment';
 
-const ORDER_API = "http://localhost:8080/api/order/";
+const ORDER_API = environment.API_URL + "/api/order/";
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

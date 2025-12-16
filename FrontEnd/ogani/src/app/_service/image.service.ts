@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-const IMAGE_API = "http://localhost:8080/api/image/";
+const IMAGE_API = environment.API_URL + "/api/image/";
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -16,7 +17,7 @@ export class ImageService {
   upload(file:File){
     const formData: FormData = new FormData();
     formData.append('file',file);
-    return this.http.post<any>(IMAGE_API+'upload-file',formData); 
+    return this.http.post<any>(IMAGE_API+'upload-file',formData);
   }
 
   getList(){
